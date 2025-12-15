@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אליפות מכבי צפון - לוח תוצאות</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f9; /* רקע אפור ניטרלי */
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --line-color: #ccc;
+            --winner-weight: 700;
+            --meta-color: #888;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 { font-weight: 400; margin: 0; font-size: 2rem; }
+        p { color: var(--meta-color); margin-top: 5px; }
+
+        /* Bracket Container */
+        .bracket {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto; /* גלילה רוחבית */
+            padding: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            min-width: 250px;
+            margin-left: 0;
+            justify-content: space-around;
+        }
+
+        .column-title {
+            text-align: center;
+            font-weight: bold;
+            color: var(--meta-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Match Card */
+        .match {
+            background: var(--card-bg);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            padding: 10px;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            /* גובה קבוע כדי לשמור על סדר */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ריווחים משתנים לפי סיבובים */
+        .r1 .match { margin-bottom: 20px; }
+        .r2 .match { margin-bottom: 60px; margin-top: 40px; }
+        .r3 .match { margin-bottom: 140px; margin-top: 100px; }
+        .r4 .match { margin-bottom: 300px; margin-top: 220px; } /* רבע גמר */
+
+        /* קווים מחברים (Connectors) */
+        .match::after {
+            content: '';
+            position: absolute;
+            left: -20px; /* קו שיוצא שמאלה לסיבוב הבא */
+            top: 50%;
+            width: 20px;
+            height: 1px;
+            background: var(--line-color);
+            z-index: 0;
+        }
+        
+        /* ביטול קו בסיבוב האחרון */
+        .final .match::after { display: none; }
+
+        /* שחקנים */
+        .player {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+        
+        .player:first-child { border-bottom: 1px solid #f0f0f0; margin-bottom: 4px; padding-bottom: 4px; }
+
+        .winner { font-weight: var(--winner-weight); color: #000; }
+        .loser { color: #999; }
+        
+        .score { font-size: 0.85em; font-weight: bold; margin-right: 10px; }
+        .wo-badge { font-size: 0.8em; color: #999; font-style: italic; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>אליפות מכבי צפון 2025</h1>
+    <p>קטגוריה: Open יחידים (64 משתתפים)</p>
+</header>
+
+<div class="bracket">
+
+    <div class="column r1">
+        <div class="column-title">סיבוב 1</div>
+        
+        <div class="match">
+            <div class="player winner">יניב גוטמן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">גיא אופין</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">דניאל מרין <span class="score">7-5 7-5</span></div>
+            <div class="player loser">גבריאל נעם</div>
+        </div>
+        <div class="match">
+            <div class="player winner">חזי מנע</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">איתי אברבנל</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">איתי אברבנל <span class="score">6-4 6-4</span></div>
+            <div class="player loser">ארטיום</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">שרמי</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">איציק גבאי</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+
+        <div class="match">
+            <div class="player winner">רומן גורניך</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">בועז מרנשטיין <span class="score">6-3 6-1</span></div>
+            <div class="player loser">אפי</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">ירון דיאמנט</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">כפיר שיינפלד</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">רונן משיח</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">אייל דבורא <span class="score">6-3 7-5</span></div>
+            <div class="player loser">??</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">יואב לביא</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">אורן דוקן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+
+        <div class="match">
+            <div class="player winner">צבאג אבי</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">עיטם הדרי</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">שי דהן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">???</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">אסי טל</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player">אריאל תובל</div>
+            <div class="player">וקרט ישראל</div>
+        </div>
+
+        <div class="match">
+            <div class="player winner">אורי קלמן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">קייטון אייל</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+
+        <div class="match">
+            <div class="player winner">ציון גואטה</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">יואב רימון</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">אלי כהן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">נדב שתקני</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">יובל אלון</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+        <div class="match">
+            <div class="player winner">רוני עזרן</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+
+        <div class="match">
+            <div class="player winner">איציק זאבי <span class="score">6-3 6-4</span></div>
+            <div class="player loser">נדב פלמח</div>
+        </div>
+        <div class="match">
+            <div class="player winner">אופיר אברמוביץ</div>
+            <div class="player wo-badge">WO</div>
+        </div>
+    </div>
+
+    <div class="column r2">
+        <div class="column-title">סיבוב 2 (32)</div>
+        
+        <div class="match">
+            <div class="player winner">יניב גוטמן <span class="score">6-1 6-4</span></div>
+            <div class="player loser">גיא אופין</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">דניאל מרין</div>
+            <div class="player">חזי מנע</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">איתי אברבנל</div>
+            <div class="player">איתי אברבנל</div>
+        </div>
+        
+        <div class="match">
+            <div class="player loser">שרמי</div>
+            <div class="player winner">איציק גבאי <span class="score">6-2 6-2</span></div>
+        </div>
+        
+        <div class="match">
+            <div class="player">רומן גורניך</div>
+            <div class="player">בועז מרנשטיין</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">ירון דיאמנט</div>
+            <div class="player">כפיר שיינפלד</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">רונן משיח</div>
+            <div class="player">אייל דבורא</div>
+        </div>
+        
+        <div class="match">
+            <div class="player loser">יואב לביא</div>
+            <div class="player winner">אורן דוקן <span class="score">WO</span></div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">צבאג אבי <span class="score">6-2 6-3</span></div>
+            <div class="player loser">עיטם הדרי</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">שי דהן</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">אסי טל</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player loser">אורי קלמן</div>
+            <div class="player winner">קייטון אייל <span class="score">WO</span></div>
+        </div>
+        
+        <div class="match">
+            <div class="player">ציון גואטה</div>
+            <div class="player">יואב רימון</div>
+        </div>
+        
+        <div class="match">
+            <div class="player loser">אלי כהן</div>
+            <div class="player winner">נדב שתקני <span class="score">WO</span></div>
+        </div>
+        
+        <div class="match">
+            <div class="player">יובל אלון</div>
+            <div class="player">רוני עזרן</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">איציק זאבי</div>
+            <div class="player">אופיר אברמוביץ</div>
+        </div>
+    </div>
+
+    <div class="column r3">
+        <div class="column-title">שמינית גמר</div>
+        
+        <div class="match">
+            <div class="player winner">יניב גוטמן</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player winner">איציק גבאי</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player winner">אורן דוקן</div>
+        </div>
+        
+        <div class="match">
+            <div class="player winner">צבאג אבי</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player winner">קייטון אייל</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player winner">נדב שתקני</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+    </div>
+
+    <div class="column r4">
+        <div class="column-title">רבע גמר</div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+        
+        <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+         <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+         <div class="match">
+            <div class="player">???</div>
+            <div class="player">???</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
